@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Demo - Travel Buddy</title>
+    <!-- 1. Load the core Dialogflow Messenger script. CSS is often loaded implicitly. -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f4f8;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* Adjusted container to not overlap the 350px wide sidebar */
+        .container {
+            max-width: 900px;
+            /* Added margin-right to account for the persistent 350px wide chat sidebar */
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensure the container width is respected, especially on smaller screens */
+        @media (min-width: 768px) {
+            .container {
+                /* On screens wider than 768px, reserve space for the chat */
+                max-width: calc(100% - 370px);
+                margin-left: 20px;
+                margin-right: 370px;
+                /* 350px width + 20px margin */
+            }
+        }
+
+
+        h1 {
+            color: #1d4ed8;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            color: #475569;
+            font-size: 1.125rem;
+            margin-bottom: 20px;
+        }
+
+        .agent-info {
+            background-color: #e0f2f1;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #0d9488;
+        }
+
+        /* Essential Custom Styling for the Full-Height Sidebar Chat */
+        df-messenger {
+            /* Full-height sidebar configuration */
+            z-index: 999;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            top: 0;
+            width: 350px;
+            /* Fixed width for the sidebar */
+
+            /* Customizing the theme variables */
+            --df-messenger-font-family: 'Inter', sans-serif;
+            --df-messenger-chat-background: #ffffff;
+            --df-messenger-message-user-background: #bfdbfe;
+            --df-messenger-message-bot-background: #f1f5f9;
+            --df-messenger-send-icon-color: #1d4ed8;
+            --df-messenger-bubble-button-color: #1d4ed8;
+
+            /* Ensure it fills the height */
+            height: 100vh;
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Your AI Travel Agent Demo</h1>
+        <p>This is the landing page for your Vertex AI Agent Builder demonstration.</p>
+
+        <div class="agent-info">
+            <strong>Full-Height Sidebar Mode:</strong> Since you used a persistent style, the "Travel Buddy" chat window
+            is now displayed as a full-height sidebar on the right side of the screen. Start chatting directly!
+        </div>
+
+        <p style="margin-top: 30px;">
+            The agent uses Google's Dialogflow Messenger component, making it easy to embed into any modern website.
+        </p>
+    </div>
+
+    <!-- 
+        ===================================================================
+        2. DIALOGFLOW MESSENGER EMBED CODE (with your IDs)
+        
+        We are using the <df-messenger-chat> tag here, which works with 
+        the full-height sidebar styling defined above.
+        ===================================================================
+    -->
+    <df-messenger project-id={PROJECT_ID} agent-id={Agent-ID} language-code="en" max-query-length="-1">
+        <df-messenger-chat chat-title="Travel Buddy">
+        </df-messenger-chat>
+    </df-messenger>
+
+</body>
+
+</html>
